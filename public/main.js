@@ -3,6 +3,7 @@ let currentReport = {}
 const weatherReport = () => {
   const location = document.querySelector('.location-field').value
   const isCityOrZip = isNaN(location)
+
   if (isCityOrZip == true) {
     const cityUrl =
       'https://api.openweathermap.org/data/2.5/weather?q=' +
@@ -15,6 +16,7 @@ const weatherReport = () => {
       .then(report => {
         currentReport = report
         console.log(currentReport)
+        printWeather()
       })
   } else {
     const zipUrl =
@@ -28,14 +30,22 @@ const weatherReport = () => {
       .then(report => {
         currentReport = report
         console.log(currentReport)
+        printWeather()
       })
   }
+}
+
+const printWeather = () => {
+  const reportTemp = currentReport.main.temp
+  console.log(reportTemp)
+  const reportCondition = currentReport.weather[0].description
+  console.log(reportCondition)
 
   const temperature = document.createElement('h3')
-  temperature.textContent = currentReport.main.temp
+  temperature.textContent = reportTemp + '\u00B0 F'
   document.querySelector('body').appendChild(temperature)
   const conditions = document.createElement('h3')
-  conditions.textContent = currentReport.weather.description
+  conditions.textContent = reportCondition
   document.querySelector('body').appendChild(conditions)
 }
 
