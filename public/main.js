@@ -2,9 +2,8 @@ let currentReport = {}
 
 const weatherReport = () => {
   const location = document.querySelector('.location-field').value
-  const isCityOrZip = isNaN(location)
 
-  if (isCityOrZip == true) {
+  if (isNaN(location) == true) {
     const cityUrl =
       'https://api.openweathermap.org/data/2.5/weather?q=' +
       location +
