@@ -42,7 +42,7 @@ const printWeather = () => {
   console.log(reportCondition)
 
   const temperature = document.createElement('h3')
-  temperature.textContent = reportTemp + '\u00B0 F'
+  temperature.textContent = reportTemp + ' \u00B0F'
   document.querySelector('body').appendChild(temperature)
   const conditions = document.createElement('h3')
   conditions.textContent = reportCondition
