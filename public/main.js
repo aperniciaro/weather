@@ -38,6 +38,9 @@ const error = err => {
 
 const weatherReport = () => {
   const location = document.querySelector('.location-field').value
+  const specifiedLocation = document.createElement('h2')
+  specifiedLocation.textContent = 'In ' + location + ': '
+  document.querySelector('body').appendChild(specifiedLocation)
 
   if (isNaN(location) == true) {
     const cityUrl =
