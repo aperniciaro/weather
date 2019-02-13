@@ -21,15 +21,7 @@ const success = pos => {
     currentLong +
     '&appid=27c656c95af0cc6ac0d65538f53aab04&units=imperial'
 
-  fetch(coordUrl)
-    .then(resp => {
-      return resp.json()
-    })
-    .then(report => {
-      currentReport = report
-      console.log(currentReport)
-      printWeather()
-    })
+  callApi(coordUrl)
 }
 
 const error = err => {
@@ -47,30 +39,26 @@ const weatherReport = () => {
       'https://api.openweathermap.org/data/2.5/weather?q=' +
       location +
       '&appid=27c656c95af0cc6ac0d65538f53aab04&units=imperial'
-    fetch(cityUrl)
-      .then(resp => {
-        return resp.json()
-      })
-      .then(report => {
-        currentReport = report
-        console.log(currentReport)
-        printWeather()
-      })
+    callApi(cityUrl)
   } else {
     const zipUrl =
       'https://api.openweathermap.org/data/2.5/weather?zip=' +
       location +
       '&appid=27c656c95af0cc6ac0d65538f53aab04&units=imperial'
-    fetch(zipUrl)
-      .then(resp => {
-        return resp.json()
-      })
-      .then(report => {
-        currentReport = report
-        console.log(currentReport)
-        printWeather()
-      })
+    callApi(zipUrl)
   }
+}
+
+const callApi = whatUrl => {
+  fetch(whatUrl)
+    .then(resp => {
+      return resp.json()
+    })
+    .then(report => {
+      currentReport = report
+      console.log(currentReport)
+      printWeather()
+    })
 }
 
 const printWeather = () => {
