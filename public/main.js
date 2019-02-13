@@ -39,12 +39,14 @@ const weatherReport = () => {
       'https://api.openweathermap.org/data/2.5/weather?q=' +
       location +
       '&appid=27c656c95af0cc6ac0d65538f53aab04&units=imperial'
+
     callApi(cityUrl)
   } else {
     const zipUrl =
       'https://api.openweathermap.org/data/2.5/weather?zip=' +
       location +
       '&appid=27c656c95af0cc6ac0d65538f53aab04&units=imperial'
+
     callApi(zipUrl)
   }
 }
