@@ -1,5 +1,41 @@
 let currentReport = {}
 
+const yourLocation = () => {
+  navigator.geolocation.getCurrentPosition(success, error, options)
+}
+
+const options = {
+  enableHighAccuracy: false,
+  timeout: 100000,
+  maximumAge: 0
+}
+
+const success = pos => {
+  let currentLat = pos.coords.latitude
+  let currentLong = pos.coords.longitude
+
+  let coordUrl =
+    'https://api.openweathermap.org/data/2.5/weather?lat=' +
+    currentLat +
+    '&lon=' +
+    currentLong +
+    '&appid=27c656c95af0cc6ac0d65538f53aab04&units=imperial'
+
+  fetch(coordUrl)
+    .then(resp => {
+      return resp.json()
+    })
+    .then(report => {
+      currentReport = report
+      console.log(currentReport)
+      printWeather()
+    })
+}
+
+const error = err => {
+  console.warn(`ERROR(${err.code}): ${err.message}'`)
+}
+
 const weatherReport = () => {
   const location = document.querySelector('.location-field').value
 
@@ -51,3 +87,5 @@ const printWeather = () => {
 document
   .querySelector('.search-button')
   .addEventListener('click', weatherReport)
+
+document.addEventListener('DOMContentLoaded', yourLocation)
