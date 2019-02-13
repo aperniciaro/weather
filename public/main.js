@@ -58,16 +58,13 @@ const callApi = whatUrl => {
     })
     .then(report => {
       currentReport = report
-      console.log(currentReport)
       printWeather()
     })
 }
 
 const printWeather = () => {
   const reportTemp = currentReport.main.temp
-  console.log(reportTemp)
   const reportCondition = currentReport.weather[0].description
-  console.log(reportCondition)
 
   const temperature = document.createElement('h3')
   temperature.textContent = reportTemp + ' \u00B0F'
